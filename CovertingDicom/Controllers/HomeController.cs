@@ -93,7 +93,7 @@ namespace CovertingDicom.Controllers
 
         }
         [HttpGet]
-        public IActionResult ConvertDicomtoPNG(string id)
+        public string ConvertDicomtoPNG(string id)
         {
             string path = _studies.getPtatient(id).ToString();
             string editPath = path + ".dcm";
@@ -110,17 +110,19 @@ namespace CovertingDicom.Controllers
                     var editImage= "wwwroot/CovertedImages/"+ name + ".png";
                     image.Save(editImage, new PngOptions());
                     string jpgpath = name + ".png";
-                    return RedirectToAction("DisplayImage", new
-                    {
-                        id = jpgpath,
-                    });
+                    //return RedirectToAction("DisplayImage", new
+                    //{
+                    //    id = jpgpath,
+                    //});
+                    return jpgpath;
                 }
             }
         }
         public IActionResult DisplayImage( string id)
         {
             ViewBag.EditPath = id;
-            return View();
+            return View("Index");
+            //return PartialView("_DisplayImage");
         }
 
     }  

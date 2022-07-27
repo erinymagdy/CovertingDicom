@@ -2,42 +2,155 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+  <style>
+body {font-family: Arial, Helvetica, sans-serif;}
 
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
+#myImg:hover {opacity: 0.7;}
 
-<div class="p-0 position-relative mt-n4 mx-3 z-index-2 m-3" style="background-color:white;">
-    <div class="bg-gradient shadow-primary pt-4 pb-3">
-        <h2 class="text-black-30 text-capitalize ps-3 alignleft" style="text-align: left; float: left; margin-bottom: 20px; padding-bottom: 15px;"> Patients Rays</h2>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 900px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+/*-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}*/
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+/*media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}*/
+</style>
+   <div class="row justify-content-center pt-xl-1">
+    <div class="col-xl-12 col-md-12 col-sm-12 pt-xl-5">
+        <div class="py-3 pb-5">
+
+            <h4 class="m-0 font-weight-bold text-dark text-center">
+                <span>
+                    <i class="fa fa-headset"></i>
+                </span> Patients Study
+            </h4>
+
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-dark">
+                    <i class="fa fa-headset"></i>
+                   Patients Study
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row mb-4">
+                    
+                    <div class="col-xl-4 col-md-4 col-sm-12">
+                    </div>
+                    <div class="col-xl-4 col-md-4 col-sm-12 text-xl-right mt-auto">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-md-8 col-sm-12">
+                        <div class="table-responsive-md table-responsive-sm ">
+                            <table id="Room" class="table table-striped table-bordered text-center" width="100%" cellspacing="0">
+                                <thead>
+                                         <tr>
+                                        <th>#</th>
+                                        <th>Patient Id</th>
+                                        <th>Patient Name</th>
+                                        <th>Study Id</th>
+                                        <th>Modality Name</th>
+                                        <th>Image Path</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
-<hr style="clear:both;" />
-<div align="center" class="mt-n4 mx-3 mt-3">
-    <table id="Room" class="table text-center table-hover">
-        <thead style="background-color: #1BABA3; color: white; height: 50px;">
-            <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Patient Id
-                </th>
-                <th>
-                    Patient Name
-                </th>
-                <th>
-                   Study Id
-                </th>
-                <th>
-                    Modality Name
-                </th>
-                 <th>
-                   Image Path
-                </th>
-            </tr>
-        </thead>
-    </table>
+
+ <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <div id="img01"></div>
+
+  <div id="caption"></div>
 </div>
- 
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -49,7 +162,7 @@
     <script src="~/datatables-buttons/js/dataTables.buttons.min.js"></script>
     <script src="~/datatables-buttons/js/buttons.html5.min.js"></script>
 <script type="text/javascript">
-
+  
     $(document).ready(function () {
 
             $('#Room').dataTable({
@@ -74,10 +187,6 @@
                     "url": '@Url.Action("LoadData")',
                     "type": "POST",
                     "datatype": "json",
-                    //"data": function (d) {
-                    //    d.college = $("#College option:selected").val();
-                    //    d.isActive = $("#Active option:selected").val();
-                    //},
                     "complete": function (response) { }
                 },
 
@@ -100,17 +209,53 @@
                       { "data": "modalityName", "name": "modalityName", "autoWidth": true },
                       { "data": "imagePath",
                       'render': function(data, type, row, meta) {
-       
-                          console.log(row.studyID);
-                   
-                        return `<a href='@Url.Action("ConvertDicomtoPNG", "Home")/${row.studyID}'>Generate JPG</a>`;
-                        
+      
+                        //return `<a href='@Url.Action("ConvertDicomtoPNG", "Home")/${row.studyID}'>Generate JPG</a>`;
+                             return ` <button class="btn btn-secondary" onclick='showImage("${row.studyID}")';>Generate JPG</button>`
                           }
                       },
                 ],
 
               });
         });
-     
+     function showImage(studyId) {
+         console.log(studyId);
+           $.ajax({
+                type: "GET",
+                datatype: "json",
+                url: '@Url.Action("ConvertDicomtoPNG", "Home")' + '?id=' + studyId ,
+                data: { },
+                success: function (img) {
+                    console.log(img);
+                    var modal = document.getElementById("myModal");
+                  // Get the image and insert it inside the modal - use its "alt" text as a caption
+                    var modalImg = document.getElementById("img01");
+                    var captionText = document.getElementById("caption");
+                      modal.style.display = "block";
+                      var elem = document.createElement("img");
+                        elem.setAttribute("src", `CovertedImages/${img}`);
+                         elem.setAttribute("class", "modal-content");
+                        //elem.setAttribute("height", "768");
+                        //elem.setAttribute("width", "1024");
+                        elem.setAttribute("alt", "Image");
+                        document.getElementById("img01").appendChild(elem);
+                    //$('#img01').append(`<img class="modal-content" src="${img}" >`); 
+                      //modalImg.src ="CovertingDicom/wwwroot/CovertedImages/" +img;
+                    //  captionText.innerHTML = img;
+                    //console.log(modalImg.src);
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() { 
+                      modal.style.display = "none";
+                     }
+                },
+                error: function () {
+                    $("#active-conformation").modal('hide');
+                }
+            });
+            
+    }
 </script>
 }
