@@ -1,0 +1,151 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-CovertingDicom-880D12E5-9229-49D9-9C3F-BFFBF63B1F1D</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Images\S1_2_840_113564_172161013_2020090109580193766.dcm" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspose.Imaging" Version="22.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="Vintasoft.Imaging" Version="12.0.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+    <Folder Include="wwwroot\CovertedImages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Dicom">
+      <HintPath>C:\Users\Shift\Downloads\DicomSliderDemo\DicomSliderDemo\DicomSliderDemo\bin\Dicom.dll</HintPath>
+    </Reference>
+    <Reference Include="Dicom.Native">
+      <HintPath>C:\Users\Shift\Downloads\DicomSliderDemo\DicomSliderDemo\DicomSliderDemo\bin\Dicom.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.IWshRuntimeLibrary">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\Interop.IWshRuntimeLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Annotation">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.Annotation.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Basic">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.Basic - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Basic.Codec">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.Basic.Codec - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.DICOM">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.DICOM - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Drawing">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.Drawing - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Font">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.Font - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.JBIG2">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.JBIG2 - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.JPEG2000">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.JPEG2000 - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Processing">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.Processing - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.SVG">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.SVG - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.WinformsControl.Twain">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.WinformsControl.Twain - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.XPS">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.Imaging.XPS - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.WDP">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.WDP - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.Converter">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.Converter - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.Excel">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.Excel - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.HTML5Viewer">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.HTML5Viewer - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.Office.Inner.Common">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.Office.Inner.Common - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.Office.Inner.Office03">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.Office.Inner.Office03 - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.PDF">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.PDF - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.PDF.HTML5Editor">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.PDF.HTML5Editor - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.PDF.WinForm">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.PDF.WinForm - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.PowerPoint">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.PowerPoint - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.TIFF">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.TIFF - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.WindowsViewer">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.WindowsViewer - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.WindowsViewer.WPF">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.WindowsViewer.WPF - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XDoc.Word">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XDoc.Word - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.AdvancedCleanup.Core">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.AdvancedCleanup.Core - Copy.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.BarcodeCreator">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.BarcodeCreator.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.BarcodeScanner">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.BarcodeScanner.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.OCR">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.OCR.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.OCR.Tesseract">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.OCR.Tesseract.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.Raster">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.Raster.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.Raster.Core">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.Raster.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.Raster.WinFormsControl">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.Raster.WinFormsControl.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.XImage.Viewer">
+      <HintPath>C:\Users\Shift\Downloads\RasterEdge.DocImageSDK\RasterEdge.DocImageSDK11.5.2(release)\Bin\DotNet Framework4.0\x64\RasterEdge.XImage.Viewer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "datatables@1.10.21",
+      "destination": "wwwroot/datatables/",
+      "files": [
+        "js/jquery.dataTables.min.js",
+        "js/dataTables.bootstrap4.min.js",
+        "images/sort_desc_disabled.png",
+        "images/sort_desc.png",
+        "images/sort_both.png",
+        "images/sort_asc_disabled.png",
+        "images/sort_asc.png",
+        "css/jquery.dataTables.min.css",
+        "css/dataTables.bootstrap.min.css"
+      ]
+    },
+    {
+      "library": "pdfmake@0.2.5",
+      "destination": "wwwroot/pdfmake/",
+      "files": [
+        "pdfmake.min.js",
+        "vfs_fonts.min.js"
+      ]
+    },
+    {
+      "library": "jszip@3.10.0",
+      "destination": "wwwroot/jszip/",
+      "files": [
+        "jszip.min.js"
+      ]
+    },
+    {
+      "library": "datatables-buttons@2.2.3",
+      "destination": "wwwroot/datatables-buttons/"
+    },
+    {
+      "library": "datatables.net-buttons@2.2.3",
+      "destination": "wwwroot/datatables.net-buttons/"
+    },
+    {
+      "library": "datatables.net-buttons-bs@2.2.3",
+      "destination": "wwwroot/datatables.net-buttons-bs/"
+    }
+  ]
+}

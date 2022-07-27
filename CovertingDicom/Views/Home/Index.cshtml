@@ -1,0 +1,141 @@
+﻿@model CovertingDicom.ViewModels.PatientStudyDetail
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<img src="~/Images/S1_2_840_113564_172161013_2020090109580193766.dcm"/>
+
+<div class="p-0 position-relative mt-n4 mx-3 z-index-2 m-3" style="background-color:white;">
+    <div class="bg-gradient shadow-primary pt-4 pb-3">
+        <h2 class="text-black-30 text-capitalize ps-3 alignleft" style="text-align: left; float: left; margin-bottom: 20px; padding-bottom: 15px;"> Patients Rays</h2>
+    </div>
+</div>
+<hr style="clear:both;" />
+<div align="center" class="mt-n4 mx-3 mt-3">
+    <table id="Room" class="table text-center table-hover">
+        <thead style="background-color: #1BABA3; color: white; height: 50px;">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Patient Id
+                </th>
+                <th>
+                    Patient Name
+                </th>
+                <th>
+                   Study Id
+                </th>
+                <th>
+                    Modality Name
+                </th>
+                 <th>
+                   Image Path
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+    <img id="myImg" src="~/CovertedImages/@ViewBag.EditPath" alt="Snow" style="width:100%;max-width:300px">
+@*<img src="~/CovertedImages/@ViewBag.EditPath" style="width:1000px;height:1000px" />*@
+   <!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01" >
+  <div id="caption"></div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="~/datatables/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/pdfmake/pdfmake.min.js"></script>
+    <script src="~/pdfmake/vfs_fonts.min.js"></script>
+    <script src="~/jszip/jszip.min.js"></script>
+    <script src="~/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/datatables-buttons/js/buttons.html5.min.js"></script>
+<script type="text/javascript">
+    var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+    $(document).ready(function () {
+
+            $('#Room').dataTable({
+                "serverSide": true,
+                "paging": true,
+               "ordering": false,
+                "recordsTotal": true,
+                "orderMulti": true,
+                "order": [[1, 'asc'], [3, 'asc']],
+                "responsive": true,
+                "processing": true,
+                "dom": "lfrtip",
+                "filter": true,
+                "bFilter": true,
+                "searching": true,
+                "aLengthMenu": [
+                    [10,100, 50, 100, 200, -1],
+                    [10,100, 50, 100, 200, "All"]
+                ],
+                "iDisplayLength": 10,
+                "ajax": {
+                    "url": '@Url.Action("LoadData")',
+                    "type": "POST",
+                    "datatype": "json",
+                    //"data": function (d) {
+                    //    d.college = $("#College option:selected").val();
+                    //    d.isActive = $("#Active option:selected").val();
+                    //},
+                    "complete": function (response) { }
+                },
+
+                "columnDefs": [{
+                    "targets": [0],
+                    "visible": true,
+                    "searchable": false
+                }],
+
+                  "columns": [
+                      {
+                          "data": function (data, type, full, meta ) {
+                              return `<span>${(count = meta.row +1)} </span>`
+                          },
+                          "name": "count"
+                      },
+                      { "data": "patientID", "name": "patientID", "autoWidth": true },
+                      { "data": "patientName", "name": "patientName", "autoWidth": true },
+                      { "data": "studyID", "name": "studyID", "autoWidth": true },
+                      { "data": "modalityName", "name": "modalityName", "autoWidth": true },
+                      { "data": "imagePath",
+                      'render': function(data, type, row, meta) {
+       
+                          console.log(row.studyID);
+                   
+                        return `<a href='@Url.Action("ConvertDicomtoPNG", "Home")/${row.studyID}'>Generate JPG</a>`;
+                        
+                          }
+                      },
+                ],
+
+              });
+        });
+     
+</script>
+}
