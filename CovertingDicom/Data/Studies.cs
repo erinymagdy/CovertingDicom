@@ -21,7 +21,6 @@ namespace CovertingDicom.Data
             IEnumerable<PatientStudyDetail> examScheduleReport = (from e in _mIGlobalContext.Studies
                                                                   join s in _mIGlobalContext.Patients on e.PatIncIdDet equals s.PatIncId
                                                                   //left outr join r in _context.StudentExamRooms on s.StudentId equals r.StudentId
-                                                                  where e.StudyId == "8997"
                                                                   select new PatientStudyDetail()
                                                                   {
                                                                       PatientID = e.PatIncIdDet,
@@ -30,7 +29,7 @@ namespace CovertingDicom.Data
                                                                       PatientName = s.PatName,
                                                                       ModalityName = e.ModalityName,
 
-                                                                  }).Distinct();
+                                                                  });
             return examScheduleReport.ToList();
         }
         public string getPtatient(string id)
